@@ -9,11 +9,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import br.com.ufc.dao.PessoaDAO;
 import br.com.ufc.model.Pessoa;
 
 @WebServlet("/adicionarPessoa")
 public class AdicionaPessoa extends HttpServlet{
 	
+	private PessoaDAO pessoaDAO;
+
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nome = request.getParameter("nome");
@@ -22,6 +25,9 @@ public class AdicionaPessoa extends HttpServlet{
 		Pessoa pessoa = new Pessoa();
 		pessoa.setNome(nome);
 		pessoa.setTime(time);
+		
+		PessoaDAO pessoaDAO = new PessoaDAO();
+		pessoaDAO.cadastrarPessoa(pessoa);
 		
 		PrintWriter out = response.getWriter();
 
@@ -35,17 +41,20 @@ public class AdicionaPessoa extends HttpServlet{
 		pessoa.getNome() + "tem o time: " + 
 				pessoa.getTime());
 		
+		out.println("Lista:" + pessoaDAO.toString());
+		
 		out.println("</body>");
 		out.println("</html>");
+		
+		
 		
 		//Pegar os dados do formulário
 		//Criar um objeto Pessoa
 		//Cadastrar e Mostrar na tela
-		
-		
-		
-		
 	}
+	
+	
+
 	
 	
 }

@@ -25,6 +25,13 @@ public class Pessoa {
 	public void setTime(String time) {
 		this.time = time;
 	}
+
+	@Override
+	public String toString() {
+		return "Pessoa [nome=" + nome + ", time=" + time + "]";
+	}
+	
+	
 	
 	
 	
