@@ -26,7 +26,7 @@ public class AdicionaPessoa extends HttpServlet{
 		pessoa.setNome(nome);
 		pessoa.setTime(time);
 		
-		PessoaDAO pessoaDAO = new PessoaDAO();
+		PessoaDAO pessoaDAO = PessoaDAO.getInstance();
 		pessoaDAO.cadastrarPessoa(pessoa);
 		
 		PrintWriter out = response.getWriter();
@@ -40,6 +40,7 @@ public class AdicionaPessoa extends HttpServlet{
 		out.println("A pessoa " + 
 		pessoa.getNome() + "tem o time: " + 
 				pessoa.getTime());
+		
 		
 		out.println("Lista:" + pessoaDAO.toString());
 		

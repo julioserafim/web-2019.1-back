@@ -18,5 +18,14 @@ public class PessoaDAO {
 		
 	}
 	
+	public List<Pessoa> retornarLista(){
+		return pessoas;
+	}
+	
+	
+	
+	
+	
+	
 	
 }

@@ -8,10 +8,23 @@ import br.com.ufc.model.Pessoa;
 public class PessoaDAO {
 	
 	private List<Pessoa> pessoas;
+	private static PessoaDAO pessoaDAO;
 	
-	public PessoaDAO() {
+	private PessoaDAO() {
 		pessoas = new ArrayList<Pessoa>();
 	}
+	
+	public static PessoaDAO getInstance() {
+		if(pessoaDAO == null) {
+		pessoaDAO = new PessoaDAO();
+		}
+		
+		return pessoaDAO;
+	}
+	
+//	public PessoaDAO() {
+//		
+//	}
 	
 	public void cadastrarPessoa(Pessoa pessoa) {
 		pessoas.add(pessoa);
@@ -19,7 +32,7 @@ public class PessoaDAO {
 
 	@Override
 	public String toString() {
-		return "PessoaDAO [pessoas=" + pessoas.toString() + "]";
+		return "PessoaDAO [pessoas=" + pessoas + "]";
 	}
 	
 	

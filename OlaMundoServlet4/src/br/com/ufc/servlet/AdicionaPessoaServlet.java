@@ -2,6 +2,7 @@ package br.com.ufc.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,12 +10,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import br.com.ufc.dao.PessoaDAO;
 import br.com.ufc.model.Pessoa;
 
 @WebServlet("/adicionaPessoa")
 public class AdicionaPessoaServlet extends HttpServlet{
-	
-	
+	private PessoaDAO pessoaDAO = new PessoaDAO();
+	private List<Pessoa> listaDePessoas;
+
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nome = request.getParameter("nome");
@@ -23,6 +26,8 @@ public class AdicionaPessoaServlet extends HttpServlet{
 		Pessoa pessoa = new Pessoa();
 		pessoa.setNome(nome);
 		pessoa.setTime(time);
+		pessoaDAO.cadastrarPessoa(pessoa);
+		listaDePessoas = pessoaDAO.retornarLista();
 		
 		PrintWriter out = response.getWriter();
 
@@ -32,8 +37,11 @@ public class AdicionaPessoaServlet extends HttpServlet{
 		out.println("</head>");
 		
 		out.println("<body>");
-		 out.println("Pessoa" + pessoa.getNome() 
-		 + "foi cadastrada com o time " + pessoa.getTime());
+		
+		 for (Pessoa pessoa2 : listaDePessoas) {
+				out.println("Nome: " + pessoa2.getNome());
+				out.println("Time:" + pessoa2.getTime() + "<br>");
+			}
 		
 		out.println("</body>");
 		out.println("</html>");
