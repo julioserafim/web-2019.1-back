@@ -16,7 +16,6 @@ import br.com.ufc.model.Pessoa;
 @WebServlet("/adicionaPessoa")
 public class AdicionaPessoaServlet extends HttpServlet{
 	private PessoaDAO pessoaDAO = new PessoaDAO();
-	private List<Pessoa> listaDePessoas;
 
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -27,7 +26,6 @@ public class AdicionaPessoaServlet extends HttpServlet{
 		pessoa.setNome(nome);
 		pessoa.setTime(time);
 		pessoaDAO.cadastrarPessoa(pessoa);
-		listaDePessoas = pessoaDAO.retornarLista();
 		
 		PrintWriter out = response.getWriter();
 
@@ -38,7 +36,7 @@ public class AdicionaPessoaServlet extends HttpServlet{
 		
 		out.println("<body>");
 		
-		 for (Pessoa pessoa2 : listaDePessoas) {
+		 for (Pessoa pessoa2 : pessoaDAO.retornarLista()) {
 				out.println("Nome: " + pessoa2.getNome());
 				out.println("Time:" + pessoa2.getTime() + "<br>");
 			}
