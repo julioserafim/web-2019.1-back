@@ -1,4 +1,4 @@
-package com.ufc.servlet;
+package br.com.ufc.servlet;
 
 import java.io.IOException;
 
@@ -18,6 +18,7 @@ public class FiltroLogin implements Filter{
 
 	@Override
 	public void destroy() {
+		// TODO Auto-generated method stub
 		
 	}
 
@@ -30,23 +31,29 @@ public class FiltroLogin implements Filter{
 		
 		HttpSession sessao = httpRequest.getSession();
 		
-		
-		if(sessao.getAttribute("usuarioLogado")!=null ||
-				httpRequest.getRequestURI().endsWith("loginFormulario")
+		if(sessao.getAttribute("usuarioLogado") !=null ||
+				httpRequest.getRequestURI().endsWith("loginForm")
 				|| httpRequest.getRequestURI().endsWith("efetuarLogin")
-				|| httpRequest.getRequestURI().contains("resources/")) {
-			
-			chain.doFilter(request, response);
-			
-			return;
+				|| httpRequest.getRequestURI().contains("resources")) {
+				
+				chain.doFilter(request, response);
+				
+				return;
 		}
 		
-		httpResponse.sendRedirect("loginFormulario");
-		
+		httpResponse.sendRedirect("loginForm");
+			
+			
+			
+			
+			
+			
+			
 	}
 
 	@Override
 	public void init(FilterConfig arg0) throws ServletException {
+		// TODO Auto-generated method stub
 		
 	}
 
