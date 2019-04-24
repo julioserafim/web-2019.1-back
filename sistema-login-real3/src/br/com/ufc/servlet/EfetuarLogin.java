@@ -28,12 +28,21 @@ public class EfetuarLogin extends HttpServlet{
 		
 		HttpSession sessao = request.getSession();
 		
-		if(pessoa!= null) {
-			sessao.setAttribute("usuarioLogado", username);
+		if(sessao.getAttribute("usuarioLogado")!=null) {
 			response.sendRedirect("telaInicial");
 		}
+		
 		else {
-			response.sendRedirect("loginFormulario");
+			
+			if(pessoa!= null) {
+				sessao.setAttribute("usuarioLogado", username);
+				response.sendRedirect("telaInicial");
+			}
+			else {
+				response.sendRedirect("loginFormulario");
+			}
+			
 		}
+		
 	}
 }
