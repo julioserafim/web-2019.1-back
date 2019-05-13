@@ -8,7 +8,6 @@ public class TesteCadastro {
 		ContatoDAO contatoDAO = new ContatoDAO();
 		
 		Contato contato1 = new Contato();
-		//contato1.setId(1L);
 		contato1.setNome("Matheus Vital");
 		contato1.setTelefone("777777");
 		

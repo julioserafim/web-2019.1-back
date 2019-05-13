@@ -35,7 +35,7 @@ public class Filtro implements Filter{
 				httpRequest.getRequestURI().endsWith("loginFormulario")||
 				httpRequest.getRequestURI().endsWith("efetuarLogin")||
 				httpRequest.getRequestURI().contains("resources")) {
-			
+				
 				chain.doFilter(request, response);
 				
 				return;

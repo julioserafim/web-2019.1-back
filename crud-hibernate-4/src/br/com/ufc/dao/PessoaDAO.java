@@ -10,9 +10,10 @@ import br.com.ufc.model.Pessoa;
 
 public class PessoaDAO {
 	
-	//adicionar, listar, remover e atualizar
+	//criar, atualizar, listar e remover
+	
 	public void adicionar(Pessoa pessoa) {
-		EntityManagerFactory fabrica = Persistence.createEntityManagerFactory("crud-hibernate");
+		EntityManagerFactory fabrica = Persistence.createEntityManagerFactory("mapeamento-jpa-hibernate");
 		EntityManager manager = fabrica.createEntityManager();
 		
 		manager.getTransaction().begin();
@@ -24,8 +25,9 @@ public class PessoaDAO {
 		
 	}
 	
-	public void remover(Long id) {
-		EntityManagerFactory fabrica = Persistence.createEntityManagerFactory("crud-hibernate");
+	
+	public void remove(Long id) {
+		EntityManagerFactory fabrica = Persistence.createEntityManagerFactory("mapeamento-jpa-hibernate");
 		EntityManager manager = fabrica.createEntityManager();
 		
 		Pessoa pessoa = manager.find(Pessoa.class, id);
@@ -34,40 +36,41 @@ public class PessoaDAO {
 		manager.remove(pessoa);
 		manager.getTransaction().commit();
 		
-		manager.close();
 		fabrica.close();
-	
+		manager.close();
+		
 	}
 	
-	public Pessoa buscarPorId(Long id) {
-		return null;
-	}
 	
-	public void alterar(Pessoa pessoa) {
-		EntityManagerFactory fabrica = Persistence.createEntityManagerFactory("crud-hibernate");
+	public void alterar (Pessoa pessoa) {
+		EntityManagerFactory fabrica = Persistence.createEntityManagerFactory("mapeamento-jpa-hibernate");
 		EntityManager manager = fabrica.createEntityManager();
 		
 		manager.getTransaction().begin();
 		manager.merge(pessoa);
 		manager.getTransaction().commit();
 		
+		fabrica.close();
+		manager.close();
+	}
+	
+	
+	public List<Pessoa> listar(){
+		EntityManagerFactory fabrica = Persistence.createEntityManagerFactory("mapeamento-jpa-hibernate");
+		EntityManager manager = fabrica.createEntityManager();
+		
+		List<Pessoa> pessoas = manager.createQuery("select p from Pessoa as p").getResultList();
+		
 		manager.close();
 		fabrica.close();
 		
-	}
-	
-	
-	
-	public List<Pessoa> retornarLista(){
-		EntityManagerFactory fabrica = Persistence.createEntityManagerFactory("crud-hibernate");
-		EntityManager manager = fabrica.createEntityManager();
+		return pessoas;
 		
 		
 	}
 	
+	public Pessoa buscar(Long id) {
+		return null;
+	}
 	
-	
-	
-	
-
 }

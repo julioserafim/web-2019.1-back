@@ -6,17 +6,15 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import br.com.ufc.model.Contato;
+import br.com.ufc.model.Proprietario;
 
-public class ContatoDAO {
-	//adicionar - remover - listar - atualizar
-	
-	public void adicionar(Contato contato) {
+public class ProprietarioDAO {
+	public void adicionar(Proprietario proprietario) {
 		EntityManagerFactory fabrica = Persistence.createEntityManagerFactory("crud-hibernate");
 		EntityManager manager = fabrica.createEntityManager();
 		
 		manager.getTransaction().begin();
-		manager.persist(contato);
+		manager.persist(proprietario);
 		manager.getTransaction().commit();
 		
 		fabrica.close();
@@ -28,11 +26,11 @@ public class ContatoDAO {
 		EntityManagerFactory fabrica = Persistence.createEntityManagerFactory("crud-hibernate");
 		EntityManager manager = fabrica.createEntityManager();
 		
-		Contato contato = manager.find(Contato.class, id);
+		Proprietario proprietario = manager.find(Proprietario.class, id);
 		
 		
 		manager.getTransaction().begin();
-		manager.remove(contato);
+		manager.remove(proprietario);
 		manager.getTransaction().commit();
 		
 		fabrica.close();
@@ -41,18 +39,18 @@ public class ContatoDAO {
 		
 	}
 	
-	public Contato buscarPorId(Long id) {
+	public Proprietario buscarPorId(Long id) {
 		return null;
 	}
 	
-	public void alterar(Contato contato) {
+	public void alterar(Proprietario proprietario) {
 		//Conexao com o banco
 		EntityManagerFactory fabrica = Persistence.createEntityManagerFactory("crud-hibernate");
 		EntityManager manager = fabrica.createEntityManager();
 		
-		//Código de Alteração de um contato no banco
+		//Código de Alteração de um proprietario no banco
 		manager.getTransaction().begin();
-		manager.merge(contato);
+		manager.merge(proprietario);
 		manager.getTransaction().commit();
 		
 		//Fechando as conexões 
@@ -62,22 +60,15 @@ public class ContatoDAO {
 	}
 	
 	
-	public List<Contato> listar(){
+	public List<Proprietario> listar(){
 		EntityManagerFactory fabrica = Persistence.createEntityManagerFactory("crud-hibernate");
 		EntityManager manager = fabrica.createEntityManager();
 		
-		List<Contato> contatos = manager.createQuery("select c from Contato as c").getResultList();
+		List<Proprietario> proprietarios = manager.createQuery("select v from Proprietario as v").getResultList();
 		
 		fabrica.close();
 		manager.close();
 		
-		return contatos;
+		return proprietarios;
 	}
-	
-	
-	
-	
-	
-	
-	
 }
