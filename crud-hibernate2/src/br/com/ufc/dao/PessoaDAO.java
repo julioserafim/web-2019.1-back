@@ -40,7 +40,16 @@ public class PessoaDAO {
 	}
 	
 	public Pessoa buscarPorId(Long id) {
-		return null;
+		EntityManagerFactory fabrica = Persistence.createEntityManagerFactory("crud-hibernate");
+		EntityManager manager = fabrica.createEntityManager();
+		
+		Pessoa pessoa = manager.find(Pessoa.class, id);
+		
+		manager.close();
+		fabrica.close();
+		
+		return pessoa;
+		
 	}
 	
 	public void alterar(Pessoa pessoa) {
@@ -62,8 +71,21 @@ public class PessoaDAO {
 		EntityManagerFactory fabrica = Persistence.createEntityManagerFactory("crud-hibernate");
 		EntityManager manager = fabrica.createEntityManager();
 		
+		List<Pessoa> pessoas = 
+				manager.createQuery("select p from Pessoa as p")
+				.getResultList();
 		
+		fabrica.close();
+		manager.close();
+		
+		return pessoas;
 	}
+	
+	
+	
+	
+	
+	
 	
 	
 	
