@@ -7,6 +7,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import br.com.ufc.model.Proprietario;
+import br.com.ufc.model.Veiculo;
 
 public class ProprietarioDAO {
 	public void adicionar(Proprietario proprietario) {
@@ -40,7 +41,14 @@ public class ProprietarioDAO {
 	}
 	
 	public Proprietario buscarPorId(Long id) {
-		return null;
+
+		EntityManagerFactory fabrica = Persistence.createEntityManagerFactory("crud-hibernate");
+		EntityManager manager = fabrica.createEntityManager();
+		
+		Proprietario proprietario = manager.find(Proprietario.class, id);
+		
+		return proprietario;
+		
 	}
 	
 	public void alterar(Proprietario proprietario) {

@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Pessoa {
@@ -17,6 +18,9 @@ public class Pessoa {
 	
 	private String nome;
 	private String telefone;
+	
+	@OneToOne(mappedBy = "proprietario")
+	private Veiculo veiculo;
 	
 	
 	public Long getId() {
@@ -36,6 +40,12 @@ public class Pessoa {
 	}
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
+	}
+	public Veiculo getVeiculo() {
+		return veiculo;
+	}
+	public void setVeiculo(Veiculo veiculo) {
+		this.veiculo = veiculo;
 	}
 	
 	

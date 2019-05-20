@@ -40,7 +40,14 @@ public class VeiculoDAO {
 	}
 	
 	public Veiculo buscarPorId(Long id) {
-		return null;
+		
+		EntityManagerFactory fabrica = Persistence.createEntityManagerFactory("crud-hibernate");
+		EntityManager manager = fabrica.createEntityManager();
+		
+		Veiculo veiculo = manager.find(Veiculo.class, id);
+		
+		return veiculo;
+		
 	}
 	
 	public void alterar(Veiculo veiculo) {
