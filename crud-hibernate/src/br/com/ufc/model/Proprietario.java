@@ -1,9 +1,13 @@
 package br.com.ufc.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -20,9 +24,13 @@ public class Proprietario {
 	private String email;
 	
 	
-	@OneToOne(mappedBy = "proprietario")
-	private Veiculo veiculo;
+	@OneToMany(mappedBy = "proprietario")
+	private List<Veiculo> veiculo;
 	
+	
+	public Proprietario(){
+		veiculo = new ArrayList<Veiculo>();
+	}
 
 	public Long getId() {
 		return id;
@@ -48,6 +56,14 @@ public class Proprietario {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	public List<Veiculo> getVeiculo() {
+		return veiculo;
+	}
+	public void setVeiculo(List<Veiculo> veiculo) {
+		this.veiculo = veiculo;
+	}
+	
+	
 	
 	
 	

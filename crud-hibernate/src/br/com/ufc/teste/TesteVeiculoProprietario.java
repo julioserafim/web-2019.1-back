@@ -8,31 +8,31 @@ import br.com.ufc.model.Veiculo;
 public class TesteVeiculoProprietario {
 	public static void main(String[] args) {
 		ProprietarioDAO proprietarioDAO = new ProprietarioDAO();
+		VeiculoDAO veiculoDAO = new VeiculoDAO();
 		
-//		Proprietario proprietario = new Proprietario();
-//		proprietario.setNome("Cássio");
-//		proprietario.setTelefone("444444");
-//		proprietario.setEmail("qualquercoisa@gmail.com");
+		Veiculo hb20 = veiculoDAO.buscarPorId(6L);
+		Veiculo hilux = veiculoDAO.buscarPorId(14L);
+		
+		Proprietario proprietario = proprietarioDAO.buscarPorId(15L);
+//		proprietario.setEmail("wesley@gmail.com");
+//		proprietario.setNome("Wesley");
+//		proprietario.setTelefone("4334343");
+//		proprietario.getVeiculo().add(hb20);
+//		proprietario.getVeiculo().add(hilux);
+//		
 //		proprietarioDAO.adicionar(proprietario);
 		
-	Proprietario proprietario2 = proprietarioDAO.buscarPorId(11L);
-//		proprietario2.setNome("PROPRIETARIO3");
-//		proprietario2.setTelefone("777779");
-//		proprietario2.setEmail("emailprop3@gmail.com");
-//		proprietarioDAO.adicionar(proprietario2);
-//		
+		hb20.setProprietario(proprietario);
+		hilux.setProprietario(proprietario);
+		
+		//veiculoDAO.alterar(hb20);
+		veiculoDAO.alterar(hilux);
+	
 		
 		
-		VeiculoDAO veiculoDAO = new VeiculoDAO();
-		Veiculo veiculo = veiculoDAO.buscarPorId(12L);
+
 		
-//	veiculo.setMarca("Toyota2");
-//	veiculo.setModelo("HB202");
-//	veiculo.setDataFabricacao("2011");
 		
-		veiculo.setProprietario(proprietario2);
-		
-		veiculoDAO.adicionar(veiculo);
 		
 		
 		
