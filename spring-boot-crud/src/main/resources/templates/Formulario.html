@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+
+</head>
+	<body>
+
+
+	<form action="/pessoa/cadastrar" method="POST" th:object="${pessoa}">
+	
+		<div class="alert alert-success" role="alert" th:if="${!#strings.isEmpty(mensagem)}">
+  			<span th:text="${mensagem}"> Teste </span>
+		</div>
+	
+		Nome: <input type="text" th:field="*{nome}"> <br>
+		Time: <input type="text" th:file="*{time}"> <br>
+		
+		<input type="submit" value="Cadastrar">
+	
+		
+	
+	
+	</form>
+
+
+		<script src="/js/bootstrap.min.js">  </script>
+
+	</body>
+</html>
