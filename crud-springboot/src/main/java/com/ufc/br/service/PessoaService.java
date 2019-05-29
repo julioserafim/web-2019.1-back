@@ -29,4 +29,9 @@ public class PessoaService {
 		pessoaRepo.deleteById(codigo);
 		
 	}
+
+
+	public Pessoa buscarPorId(Long codigo) {
+		return pessoaRepo.getOne(codigo);
+	}
 }

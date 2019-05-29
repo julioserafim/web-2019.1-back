@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -8,9 +8,11 @@
 <body>
 
 
-<form action="/pessoa/salvar" method="post">
-Nome: <input type="text" name="nome"> <br>
-Time: <input type="text" name="time">
+<form action="/pessoa/salvar" method="post" th:object="${pessoa}">
+<input type="hidden" th:field="*{codigo}">
+
+Nome: <input type="text" th:field="*{nome}"> <br>
+Time: <input type="text" th:field="*{time}">
 
 <input type="submit" value="Cadastrar">
 
