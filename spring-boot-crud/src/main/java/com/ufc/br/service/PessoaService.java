@@ -27,5 +27,9 @@ public class PessoaService {
 		pessoaRepository.deleteById(codigo);
 		
 	}
+	
+	public Pessoa buscarPorId(Long codigo) {
+		return pessoaRepository.getOne(codigo);
+	}
 
 }

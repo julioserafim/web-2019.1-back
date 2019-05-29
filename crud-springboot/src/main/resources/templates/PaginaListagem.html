@@ -23,6 +23,7 @@
 				<td th:text="${pessoa.nome}"></td>
 				<td th:text="${pessoa.time}"></td>
 				<td> <a th:href="@{/pessoa/excluir/{codigo}(codigo = ${pessoa.codigo})}"> <button type="button" class="btn btn-danger">  Excluir </button> </a></td>
+				<td> </td>
 			</tr>
 
 		</tbody>
@@ -34,7 +35,7 @@
 
 
 
-
+<a href="/pessoa/formulario"><button> CLique</button></a>
 
 	<script src="/js/bootstrap.min.js"> </script>
 

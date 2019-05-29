@@ -60,7 +60,14 @@ public class PessoaController {
 		ModelAndView mv = new ModelAndView("redirect:/pessoa/listar");
 		return mv;
 		
-		
+	}
+	
+	@RequestMapping("/pessoa/atualizar/{codigo}")
+	public ModelAndView atualizar(@PathVariable Long codigo) {
+		Pessoa pessoa = pessoaService.buscarPorId(codigo);
+		ModelAndView mv = new ModelAndView("Formulario");
+		mv.addObject("pessoa", pessoa);
+		return mv;
 	}
 	
 	

@@ -11,13 +11,15 @@
 
 
 	<form action="/pessoa/cadastrar" method="POST" th:object="${pessoa}">
+	<input type="hidden" th:field="*{codigo}">
 	
 		<div class="alert alert-success" role="alert" th:if="${!#strings.isEmpty(mensagem)}">
   			<span th:text="${mensagem}"> Teste </span>
 		</div>
 	
 		Nome: <input type="text" th:field="*{nome}"> <br>
-		Time: <input type="text" th:file="*{time}"> <br>
+		Time: <input type="text" th:field="*{time}"> <br>
+		Data de Nascimento <input type="text" th:field="*{dataNascimento}"> <br>
 		
 		<input type="submit" value="Cadastrar">
 	
