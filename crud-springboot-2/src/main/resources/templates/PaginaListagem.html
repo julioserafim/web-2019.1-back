@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -11,31 +11,21 @@
 	<table class="table">
 		<thead>
 			<tr>
-				<th scope="col">#</th>
-				<th scope="col">First</th>
-				<th scope="col">Last</th>
-				<th scope="col">Handle</th>
+				<th scope="col">Codigo</th>
+				<th scope="col">Nome</th>
+				<th scope="col">Time</th>
+				<th> </th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr>
-				<th scope="row">1</th>
-				<td>Mark</td>
-				<td>Otto</td>
-				<td>@mdo</td>
+			<tr th:each = "pessoa : ${listaDePessoas}">
+				<td th:text="${pessoa.codigo}"></td>
+				<td  th:text="${pessoa.nome}"><a th:href="@{/pessoa/formulario}"> </a></td> 
+				<td th:text="${pessoa.time}"></td>
+				<td> <a th:href="@{/pessoa/excluir/{codigo}(codigo = ${pessoa.codigo})}"  class="btn btn-danger">  Excluir </a></td>
+				<td> <a th:href="@{/pessoa/atualizar/{codigo}(codigo = ${pessoa.codigo})}"  class="btn btn-primary">  Atualizar </a></td>
 			</tr>
-			<tr>
-				<th scope="row">2</th>
-				<td>Jacob</td>
-				<td>Thornton</td>
-				<td>@fat</td>
-			</tr>
-			<tr>
-				<th scope="row">3</th>
-				<td>Larry</td>
-				<td>the Bird</td>
-				<td>@twitter</td>
-			</tr>
+			
 		</tbody>
 	</table>
 
