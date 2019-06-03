@@ -4,9 +4,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.ufc.br.model.Pessoa;
 import com.ufc.br.repository.PessoaRepository;
+import com.ufc.br.util.AulaFileUtils;
 
 @Service
 public class PessoaService {
@@ -14,7 +16,12 @@ public class PessoaService {
 	private PessoaRepository pessoaRepo;
 	
 	
-	public void cadastrar(Pessoa pessoa) {
+	public void cadastrar(Pessoa pessoa, MultipartFile imagem) {
+		
+		String caminho = "images/" + pessoa.getNome() + ".png";
+		AulaFileUtils.salvarImagem(caminho, imagem);
+		
+		
 		pessoaRepo.save(pessoa);
 		
 	}

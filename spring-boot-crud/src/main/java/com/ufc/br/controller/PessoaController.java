@@ -1,4 +1,4 @@
-package com.ufc.br.controller;
+, package com.ufc.br.controller;
 
 import java.util.List;
 
@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ufc.br.model.Pessoa;
@@ -36,8 +38,8 @@ public class PessoaController {
 	}
 	
 	@PostMapping("/pessoa/cadastrar")
-	public ModelAndView cadastrar(Pessoa pessoa) {
-		pessoaService.salvar(pessoa);
+	public ModelAndView cadastrar(Pessoa pessoa, @RequestParam(value= "imagem") MultipartFile imagem) {
+		pessoaService.salvar(pessoa,imagem);
 		ModelAndView mv = new ModelAndView("Formulario");
 		
 		mv.addObject("mensagem", "Título cadastrado com sucesso!");

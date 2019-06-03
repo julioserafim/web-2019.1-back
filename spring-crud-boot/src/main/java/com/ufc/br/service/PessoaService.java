@@ -8,7 +8,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.ufc.br.model.Pessoa;
 import com.ufc.br.repository.PessoaRepository;
-import com.ufc.br.util.AulaFileUtils;
 
 @Service
 public class PessoaService {
@@ -16,33 +15,24 @@ public class PessoaService {
 	@Autowired
 	private PessoaRepository pessoaRepository;
 	
-	public void cadastrar(Pessoa pessoa, MultipartFile imagem) {
+	public void cadastrar(Pessoa pessoa) {
 		
-		String caminho = "images/" + pessoa.getNome() + ".png";
 		
-		AulaFileUtils.salvarImagem(caminho,imagem);
 		
 		pessoaRepository.save(pessoa);
 	}
-	
-	
-	public List<Pessoa> retonarTodasAsPessoas(){
+
+	public List<Pessoa> listarPessoas() {
 		return pessoaRepository.findAll();
+		
 	}
 
-
-	public void excluirPessoa(Long codigo) {
+	public void excluir(Long codigo) {
 		pessoaRepository.deleteById(codigo);
 		
 	}
 
-
 	public Pessoa buscarPorId(Long codigo) {
 		return pessoaRepository.getOne(codigo);
 	}
-	
-	
-	
-	
-
 }

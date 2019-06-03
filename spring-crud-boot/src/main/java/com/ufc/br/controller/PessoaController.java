@@ -4,9 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -31,50 +29,47 @@ public class PessoaController {
 		return mv;
 	}
 	
-	@PostMapping("/salvar")
-	public ModelAndView salvar(Pessoa pessoa, @RequestParam(value="imagem") MultipartFile imagem) {
-		pessoaService.cadastrar(pessoa, imagem);
+	@RequestMapping("/salvar")
+	public String salvarPessoa(Pessoa pessoa) {
 		
-		ModelAndView mv = new ModelAndView("redirect:/pessoa/listar");
+		pessoaService.cadastrar(pessoa);
 		
-		return mv;
-}
+		
+		
+		
+		return "OlaMundo";
+		//cadastrar a pessoa no banco
+		//retornar uma página de sucesso
+	}
 	
 	
-	@GetMapping("/listar")
-	public ModelAndView listarPessoas() {
-		List<Pessoa> pessoas = pessoaService.listarTodos();//devolve todas as pessoas
+	@RequestMapping("/listar")
+	public ModelAndView listar() {
+		List<Pessoa> pessoas = pessoaService.listarPessoas();
 		ModelAndView mv = new ModelAndView("PaginaListagem");
-		mv.addObject("listaPessoas", pessoas);
-		
+		mv.addObject("listaDePessoas", pessoas);
 		
 		return mv;
 	}
 	
+	
 	@RequestMapping("/excluir/{codigo}")
-	public ModelAndView deletar(@PathVariable Long codigo) {
-		pessoaService.excluirPessoa(codigo);
+	public ModelAndView excluir(@PathVariable Long codigo) {
+		pessoaService.excluir(codigo);
+		
 		ModelAndView mv = new ModelAndView("redirect:/pessoa/listar");
 		return mv;
+		
 	}
 	
 	
 	@RequestMapping("/atualizar/{codigo}")
-	public ModelAndView atualizarPessoa(@PathVariable Long codigo) {
+	public ModelAndView atualizar(@PathVariable Long codigo) {
 		Pessoa pessoa = pessoaService.buscarPorId(codigo);
 		ModelAndView mv = new ModelAndView("Formulario");
 		mv.addObject("pessoa", pessoa);
 		return mv;
+		
+		
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }

@@ -6,11 +6,12 @@
 </head>
 <body>
 
-	<form action="/pessoa/salvar" method="POST" th:object="${pessoa}">
+	<form action="/pessoa/salvar" method="POST" th:object="${pessoa}" enctype="multipart/form-data">
 		<input type="hidden" th:field="*{codigo}" />
 		Nome: <input type="text" th:field="*{nome}"> <br>
 		Time: <input type="text" th:field="*{time}"> <br>
 		Data Nascimento: <input type="text" th:field="*{dataNascimento}"> <br>
+		Selecione sua foto: <input type="file" name="imagem"> <br>
 		<input type="submit" value="Cadastrar">
 		
 
