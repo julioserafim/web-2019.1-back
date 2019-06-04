@@ -6,15 +6,22 @@
 </head>
 <body>
 
-	<form action="/pessoa/salvar" method="POST" th:object="${pessoa}" enctype="multipart/form-data">
-		<input type="hidden" th:field="*{codigo}">
+	<form action="/pessoa/salvar" method="POST" th:object="${pessoa}"
+		enctype="multipart/form-data">
 		
-		Nome: <input type="text" th:field="*{nome}"> <br>
-		Time: <input type="text" th:field="*{time}" > <br>
+		<div class="alert alert-success" role="alert" th:if="${!#strings.isEmpty(mensagem)}">
 		
-		Selecione uma foto: <input type="file" name="imagem"> 
-		<input type="submit" value="Cadastrar">
-	
+			<span th:text="${mensagem}"> sddssddfdffdfd</span>
+		
+		</div>
+
+
+		<input type="hidden" th:field="*{codigo}"> Nome: <input
+			type="text" th:field="*{nome}"> <br> Time: <input
+			type="text" th:field="*{time}"> <br> Selecione uma
+		foto: <input type="file" name="imagem"> <input type="submit"
+			value="Cadastrar">
+
 	</form>
 
 </body>

@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -18,9 +20,14 @@ public class Pessoa {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long codigo;
+	
+	@NotBlank(message = "Preencha o campo nome")
 	private String nome;
+	
+	@NotBlank(message = "Preencha o campo time")
 	private String time;
 	
+	@NotNull(message = "Data não pode ser nula")
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Temporal(TemporalType.DATE)
 	private Date dataNascimento;

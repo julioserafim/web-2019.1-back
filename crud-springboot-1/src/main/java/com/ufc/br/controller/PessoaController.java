@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,11 +36,17 @@ public class PessoaController {
 	
 	
 	@PostMapping("/salvar")
-	public String cadastrar(Pessoa pessoa, @RequestParam(value="imagem") MultipartFile imagem) {
+	public ModelAndView cadastrar(@Validated Pessoa pessoa, BindingResult result, @RequestParam(value="imagem") MultipartFile imagem) {
+		ModelAndView mv = new ModelAndView("Formulario");
+		
+		if(result.hasErrors()) {
+			return mv; //retorna pra página de form e nem tenta salvar
+		}
+		
 		pessoaService.cadastrar(pessoa,imagem);
+		mv.addObject("mensagem", "Pessoa Cadastrada com sucesso");
 		
-		
-		return "OlaMundo";
+		return mv;
 	}
 	
 	@GetMapping("/listar")
