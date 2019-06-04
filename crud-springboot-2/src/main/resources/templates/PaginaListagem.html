@@ -24,6 +24,7 @@
 				<td th:text="${pessoa.time}"></td>
 				<td> <a th:href="@{/pessoa/excluir/{codigo}(codigo = ${pessoa.codigo})}"  class="btn btn-danger">  Excluir </a></td>
 				<td> <a th:href="@{/pessoa/atualizar/{codigo}(codigo = ${pessoa.codigo})}"  class="btn btn-primary">  Atualizar </a></td>
+				<td> <img width="200" height="200" th:src="@{'/images/'+${pessoa.nome}+.png}"> </td>
 			</tr>
 			
 		</tbody>

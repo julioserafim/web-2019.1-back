@@ -1,9 +1,12 @@
-, package com.ufc.br.controller;
+package com.ufc.br.controller;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,9 +41,19 @@ public class PessoaController {
 	}
 	
 	@PostMapping("/pessoa/cadastrar")
-	public ModelAndView cadastrar(Pessoa pessoa, @RequestParam(value= "imagem") MultipartFile imagem) {
-		pessoaService.salvar(pessoa,imagem);
+	public ModelAndView cadastrar(@Validated Pessoa pessoa, BindingResult result 
+			,@RequestParam(value= "imagem") MultipartFile imagem) {
+		
 		ModelAndView mv = new ModelAndView("Formulario");
+		
+		if(result.hasErrors()) {
+			return mv; //retorno pra mesma página, nem tento salvar pessoa
+		}
+		
+		pessoaService.salvar(pessoa,imagem);
+		
+		
+		
 		
 		mv.addObject("mensagem", "Título cadastrado com sucesso!");
 		

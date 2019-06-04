@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ufc.br.model.Pessoa;
@@ -28,9 +30,9 @@ public class PessoaController {
 	}
 	
 	@RequestMapping("/salvar")
-	public String salvarPessoa(Pessoa pessoa) {
+	public String salvarPessoa(Pessoa pessoa, @RequestParam(value="imagem") MultipartFile imagem) {
 		
-			pessoaService.cadastrar(pessoa);
+			pessoaService.cadastrar(pessoa,imagem);
 
 		return"OlaMundo";
 	}
