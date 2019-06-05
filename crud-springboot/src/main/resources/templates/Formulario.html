@@ -3,27 +3,47 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"/>
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
 </head>
 <body>
 
-
-<form action="/pessoa/salvar" method="post" th:object="${pessoa}" enctype="multipart/form-data">
-<input type="hidden" th:field="*{codigo}">
-
-Nome: <input type="text" th:field="*{nome}"> <br>
-Time: <input type="text" th:field="*{time}"> <br>
-Imagem: <input type="file" name="imagem"> <br>
-Data de Nascimento <input type="text" th:field="*{dataNascimento}"> <br>
-
-<input type="submit" value="Cadastrar">
+	
 
 
+	<form action="/pessoa/salvar" method="post" th:object="${pessoa}"
+		enctype="multipart/form-data">
 
-</form>
+		<div class="alert alert-success" role="alert"
+			th:if="${!#strings.isEmpty(mensagem)}">
+			<span th:text="${mensagem}"></span>
+
+		</div>
+
+		<div class="alert alert-danger" role="alert"
+			th:if="${#fields.hasAnyErrors()}">
+			<div th:each="detailedError : ${#fields.detailedErrors()}">
+
+				<span th:text="${detailedError.message}"></span>
+			</div>
+		</div>
+
+		<input type="hidden" th:field="*{codigo}">
+		<div class="form-group">
+			Nome: <input class="form-control" type="text" th:field="*{nome}">
+			<small id="nomeHelp" class="form-text text-muted">Digite seuv
+				verdadeiro nome</small>
+		</div>
+		Time: <input type="text" th:field="*{time}"> <br> Imagem:
+		<input type="file" name="imagem"> <br> Data de Nascimento
+		<input type="text" th:field="*{dataNascimento}"> <br> <input
+			type="submit" value="Cadastrar">
 
 
-<script src="/js/bootstrap.min.js"> </script>
+
+	</form>
+
+
+	<script src="/js/bootstrap.min.js"> </script>
 
 
 

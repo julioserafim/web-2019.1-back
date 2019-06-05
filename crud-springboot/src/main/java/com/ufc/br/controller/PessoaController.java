@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,17 +27,25 @@ public class PessoaController {
 	
 	
 	@RequestMapping("/formulario")
-	public ModelAndView form() {
+	public ModelAndView form(Pessoa pessoa) {
 		ModelAndView mv = new ModelAndView("Formulario");
-		mv.addObject("pessoa", new Pessoa());
+		//mv.addObject("pessoa", pessoa));
 		return mv;
 	}
 	
 	@PostMapping("/salvar")
-	public ModelAndView salvar(Pessoa pessoa, @RequestParam(value="imagem") MultipartFile imagem) {
-		pessoaService.cadastrar(pessoa, imagem);
+	public ModelAndView salvar(@Validated Pessoa pessoa, BindingResult result, @RequestParam(value="imagem") MultipartFile imagem) {
 		
-		ModelAndView mv = new ModelAndView("redirect:/pessoa/listar");
+		
+		
+		ModelAndView mv = new ModelAndView("Formulario");
+		
+		if(result.hasErrors()) {
+			return form(pessoa);
+		}
+		
+		mv.addObject("mensagem", "Pessoa cadastrada com sucesso!");
+		pessoaService.cadastrar(pessoa, imagem);
 		
 		return mv;
 }
