@@ -87,4 +87,19 @@ public class PessoaController {
 	
 	
 
+	@RequestMapping("/pessoa/logar")
+	public ModelAndView logar() {
+		ModelAndView mv = new ModelAndView("Login");
+		return mv;
+	}
+	
+	
+	@RequestMapping("/")
+	public ModelAndView pagInicial() {
+		ModelAndView mv = new ModelAndView("OlaMundo");
+		return mv;
+	}
+	
+	
+
 }

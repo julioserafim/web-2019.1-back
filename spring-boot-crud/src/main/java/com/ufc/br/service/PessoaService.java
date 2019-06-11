@@ -3,6 +3,7 @@ package com.ufc.br.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -18,6 +19,8 @@ public class PessoaService {
 	
 	
 	public void salvar(Pessoa pessoa, MultipartFile imagem) {
+		pessoa.setSenha(new BCryptPasswordEncoder().encode(pessoa.getSenha()));
+		
 		String caminho = "images/" + pessoa.getNome() + ".png";
 		AulaFileUtils.salvarImagem(caminho,imagem);
 		

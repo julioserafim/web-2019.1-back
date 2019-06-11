@@ -35,11 +35,22 @@
 		Time: <input type="text" th:field="*{time}"> <br> Data de
 		Nascimento <input type="text" th:field="*{dataNascimento}"> <br>
 
-		Imagem: <input type="file" name="imagem"> <br> <input
-			type="submit" value="Cadastrar">
+		Imagem: <input type="file" name="imagem"> <br> 
 
 
+		<div class="form-group">
+			<label for="usernameLabel">Username:</label> <input type="text"
+				class="form-control" id="exampleInputPassword4" th:field="*{login}">
+		</div>
 
+		<div class="form-group">
+			<label for="passwordLabel">Password:</label> <input type="text"
+				class="form-control" id="exampleInputPassword4" th:field="*{senha}">
+		</div>
+	
+	
+	
+	<input type="submit" value="Cadastrar">
 
 	</form>
 
