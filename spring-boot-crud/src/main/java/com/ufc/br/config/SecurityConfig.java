@@ -25,7 +25,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		http.csrf().disable().authorizeRequests()
 		
 		.antMatchers("/").permitAll()
-		.antMatchers("/pessoa/formulario").permitAll()
+		.antMatchers("/pessoa/formulario").hasRole("USER")
 		.antMatchers("/pessoa/cadastrar").permitAll()
 		.antMatchers("/pessoa/listar").permitAll()
 		
@@ -51,7 +51,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
 	@Override
 	public void configure(WebSecurity web) throws Exception{
-		web.ignoring().antMatchers("/css/**", "/js/**","/img/**");
+		web.ignoring().antMatchers("/css/**", "/js/**","/img/**", "/images/**");
 	}
 
 

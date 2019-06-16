@@ -27,9 +27,9 @@ public class PessoaController {
 	
 	
 	@RequestMapping("/formulario")
-	public ModelAndView form(Pessoa pessoa) {
+	public ModelAndView form() {
 		ModelAndView mv = new ModelAndView("Formulario");
-		//mv.addObject("pessoa", pessoa));
+		mv.addObject("pessoa", new Pessoa());
 		return mv;
 	}
 	
@@ -41,7 +41,7 @@ public class PessoaController {
 		ModelAndView mv = new ModelAndView("Formulario");
 		
 		if(result.hasErrors()) {
-			return form(pessoa);
+			return mv;
 		}
 		
 		mv.addObject("mensagem", "Pessoa cadastrada com sucesso!");

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class OlaMundoController {
 	
 	
-	@RequestMapping("/olamundo")
+	@RequestMapping("/")
 	public String olaMundo() {
 		return "OlaMundo";
 	}

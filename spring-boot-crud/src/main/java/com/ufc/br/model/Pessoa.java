@@ -2,16 +2,22 @@ package com.ufc.br.model;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.persistence.JoinColumn;
+
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.GrantedAuthority;
@@ -23,6 +29,15 @@ public class Pessoa implements UserDetails{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long codigo;
+	
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable( 
+	        name = "pessoas_roles", 
+	        joinColumns = @JoinColumn(
+	          name = "pessoa_codigo", referencedColumnName = "codigo"), 
+	        inverseJoinColumns = @JoinColumn(
+	          name = "role_codigo", referencedColumnName = "papel")) 
+	private List<Role> roles;
 	
 	
 	@NotBlank(message = "Preencha o campo nome")
@@ -78,10 +93,19 @@ public class Pessoa implements UserDetails{
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
+	
+	
+	
+	
+	public List<Role> getRoles() {
+		return roles;
+	}
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+	}
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
-		return null;
+		return (Collection<? extends GrantedAuthority>) this.roles;
 	}
 	@Override
 	public String getPassword() {

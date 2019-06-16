@@ -27,6 +27,20 @@ public class PessoaController {
 	private PessoaService pessoaService;
 	
 	
+	@RequestMapping("/administrador")
+	public ModelAndView formAdm() {
+		ModelAndView mv = new ModelAndView("administracao");
+		return mv;
+	}
+	
+	
+	@RequestMapping("/inicio")
+	public ModelAndView formIni() {
+		ModelAndView mv = new ModelAndView("OlaMundo");
+		return mv;
+	}
+	
+	
 	@RequestMapping("/formulario")
 	public ModelAndView form() {
 		ModelAndView mv = new ModelAndView("Formulario");
@@ -72,6 +86,13 @@ public class PessoaController {
     	mv.addObject("pessoa", pessoa);
     	return mv;
     	
+    }
+    
+    
+    @RequestMapping("/logar")
+    public ModelAndView formLogin() {
+    	ModelAndView mv = new ModelAndView("Login");
+    	return mv;
     }
 	
 	

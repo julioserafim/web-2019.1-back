@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -24,7 +25,7 @@
 				<td th:text="${pessoa.nome}"></td>
 				<td th:text="${pessoa.time}"></td>
 				<td th:text="${{pessoa.dataNascimento}}"></td>
-				<td> <a th:href="@{/pessoa/excluir/{codigo}(codigo = ${pessoa.codigo})}"> <button type="button" class="btn btn-danger">Excluir</button></a></td>
+				<td sec:authorize="hasRole('ROLE_ADMIN')"> <a th:href="@{/pessoa/excluir/{codigo}(codigo = ${pessoa.codigo})}"> <button type="button" class="btn btn-danger">Excluir</button></a></td>
 				<td> <a class="btn btn-primary" th:href="@{/pessoa/atualizar/{codigo}(codigo = ${pessoa.codigo})}"> Atualizar </a></td>
 				<td> <img width="200" height="200" th:src="@{'/images/'+${pessoa.nome}+.png}"> </td>
 			</tr>

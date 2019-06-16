@@ -19,6 +19,8 @@ public class PessoaService {
 	public void cadastrar(Pessoa pessoa, MultipartFile imagem) {
 		
 		String caminho = "images/" + pessoa.getNome() + ".png";
+		
+		
 		AulaFileUtils.salvarImagem(caminho, imagem);
 		
 		
