@@ -54,6 +54,12 @@ public class Pessoa implements UserDetails{
 	
 	private String login;
 	private String senha;
+
+	private String email;
+
+	public void setEmail(String email){
+		this.email = email;
+	}
 	
 	
 	public Date getDataNascimento() {
